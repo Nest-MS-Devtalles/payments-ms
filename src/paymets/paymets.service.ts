@@ -33,8 +33,8 @@ export class PaymetsService {
       },
       line_items: lineItems,
       mode: 'payment',
-      success_url: 'http://localhost:3003/paymets/success',
-      cancel_url: 'http://localhost:3003/paymets/cancel',
+      success_url: envs.stripeSuccessUrl,
+      cancel_url: envs.stripeCancelUrl,
     });
 
     return session;
@@ -43,9 +43,7 @@ export class PaymetsService {
   async stripeWebhook(req: Request, res: Response) {
     const signature = req.headers['stripe-signature'];
 
-    const endpointSecret2 =
-      'whsec_64b826ce2449b95df07735970af19193a32b40697459d4e3389cbe7c9bd633a7';
-    const endpointSecret = 'whsec_nyEdSpywJkq1mCYaw7JcJJdHwqGmx2Vr';
+    const endpointSecret = envs.stripeEndpointSecret;
 
     let event: Stripe.Event;
     try {
