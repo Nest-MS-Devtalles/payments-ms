@@ -1,8 +1,11 @@
 import { Module } from '@nestjs/common';
-import { PaymetsService } from './paymets.service';
+
+import { NatsModule } from '../transports/nats.module';
 import { PaymetsController } from './paymets.controller';
+import { PaymetsService } from './paymets.service';
 
 @Module({
+  imports: [NatsModule],
   controllers: [PaymetsController],
   providers: [PaymetsService],
 })
