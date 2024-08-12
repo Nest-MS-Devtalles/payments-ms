@@ -1,5 +1,5 @@
 # 1. Dependencias
-FROM --platform=linux/amd64 node:21-alpine3.19 AS deps
+FROM node:21-alpine3.19 AS deps
 
 WORKDIR /usr/src/app
 
@@ -9,7 +9,7 @@ COPY package-lock.json .
 RUN npm i
 
 # 2. Builder - Contruir la imagen
-FROM --platform=linux/amd64 node:21-alpine3.19 AS builder
+FROM node:21-alpine3.19 AS builder
 
 WORKDIR /usr/src/app
 
@@ -22,7 +22,7 @@ RUN npm run build
 RUN npm ci -f --only=production && npm cache clean --force
 
 # 3. Crear la imagen final
-FROM --platform=linux/amd64 node:21-alpine3.19 AS prod
+FROM node:21-alpine3.19 AS prod
 
 WORKDIR /usr/src/app
 
