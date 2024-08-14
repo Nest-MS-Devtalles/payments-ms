@@ -5,7 +5,7 @@ import { MessagePattern, Payload } from '@nestjs/microservices';
 import { PaymentSessionDto } from './dtos/payments-session.dto';
 import { PaymetsService } from './paymets.service';
 
-@Controller('paymets')
+@Controller('payments')
 export class PaymetsController {
   constructor(private readonly paymetsService: PaymetsService) {}
 
